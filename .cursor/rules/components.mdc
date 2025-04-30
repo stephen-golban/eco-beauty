@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Component Architecture
+
+The application follows a structured component architecture with clear separation of concerns.
+
+## Component Organization
+- `src/components/` - All application components
+  - `common/` - Shared components used across multiple pages
+    - `footer/` - Footer components
+    - `full-screen-loader/` - Loading states
+    - `header/` - Main navigation and app header components
+      - `sub-components/` - Header-specific subcomponents
+    - `inputs/` - Reusable form inputs
+    - `sidebar/` - Navigation sidebar
+    - `theme-switcher/` - Dark/light theme toggle functionality
+  - `icons/` - Custom icon components
+  - `ui/` - Base UI components and design system elements
+
+## Component Guidelines
+1. Keep components focused and single-responsibility
+2. Use TypeScript for prop types and interfaces
+3. Implement proper error boundaries
+4. Follow React best practices for hooks and state management
+5. Maintain consistent styling patterns
+6. Use Lucide icons for consistent iconography
+7. Implement shadcn/ui components for the design system
+
+## State Management
+- Use React hooks for local state
+- Implement context where needed for global state
+- Keep state as close to where it's used as possible
+- Use dropdown menus for component actions
+
+## Styling
+- Use Tailwind CSS for styling
+- Follow consistent class naming conventions
+- Implement responsive design principles
+- Support both light and dark themes
+- Use CSS variables for theme values
+- Maintain proper spacing using gap utilities
+- Use proper grid and flex layouts for responsive design

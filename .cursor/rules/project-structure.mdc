@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Structure Guide
+
+This is a Next.js application with authentication, resume management, and modern UI components.
+
+## Directory Structure
+
+### Core Application Code
+- `src/app/` - Main application routes and pages using Next.js App Router
+  - `(public)/` - Public accessible pages
+    - `about/` - About page
+    - `auth/` - Authentication related pages
+      - `forgot-password/` - Password recovery
+      - `reset-password/` - Password reset
+      - `sign-in/[[...sign-in]]/` - Sign-in flow
+      - `sign-up/[[...sign-up]]/` - Sign-up flow
+      - `verify/` - Email verification
+    - `contact/` - Contact page
+    - `features/` - Features showcase
+    - `pricing/` - Pricing plans
+    - `privacy/` - Privacy policy
+    - `support/` - Support pages
+    - `templates/` - Public resume templates
+  - `app/` - Protected application routes
+    - `downloads/` - Resume downloads
+    - `editor/` - Resume editor
+    - `profile/` - User profile
+    - `resumes/` - Resume management
+    - `settings/` - User settings
+    - `templates/` - User's resume templates
+
+### Components and Assets
+- `src/components/` - Reusable React components
+  - `common/` - Shared components
+  - `icons/` - Icon components
+  - `ui/` - Base UI components
+- `src/assets/` - Application assets
+- `src/hooks/` - Custom React hooks
+- `src/lib/` - Utility functions and shared logic
+
+### Data Layer
+- `prisma/` - Database schema and migrations
+- `src/generated/prisma/` - Generated Prisma client code
+
+### Configuration
+- [.env](mdc:.env) - Environment variables
+- [next.config.ts](mdc:next.config.ts) - Next.js configuration
+- [package.json](mdc:package.json) - Project dependencies
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
+- [components.json](mdc:components.json) - UI components config
+- [postcss.config.mjs](mdc:postcss.config.mjs) - PostCSS configuration
+- [eslint.config.mjs](mdc:eslint.config.mjs) - ESLint configuration
+
+## Key Features
+- Next.js 14+ with App Router
+- Authentication system with complete user flows
+- Resume creation and management
+- Template system
+- Dark/light theme support
+- TypeScript for type safety
+- Prisma for database operations
+- Tailwind CSS for styling
+- shadcn/ui component system

@@ -1,0 +1,45 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Authentication System
+
+The application uses Next.js's built-in authentication system with comprehensive user management flows.
+
+## Authentication Routes
+All authentication routes are under `src/app/(public)/auth/`:
+- `forgot-password/` - Password recovery flow
+- `reset-password/` - Password reset functionality
+- `sign-in/[[...sign-in]]/` - Sign-in pages with catch-all routing
+- `sign-up/[[...sign-up]]/` - Sign-up pages with catch-all routing
+- `verify/` - Email verification flow
+
+## Protected Routes
+All protected routes are under `src/app/app/`:
+- `downloads/` - Resume downloads
+- `editor/` - Resume editor
+- `profile/` - User profile
+- `resumes/` - Resume management
+- `settings/` - User settings
+- `templates/` - User's resume templates
+
+## Key Features
+- Complete authentication flow with email verification
+- Password recovery and reset functionality
+- Protected route middleware
+- Session management
+- Secure credential handling
+- OAuth integration support
+
+## Best Practices
+1. Always use authentication middleware for protected routes
+2. Implement proper error handling for auth failures
+3. Use secure session management
+4. Follow OAuth best practices for third-party authentication
+5. Implement proper CSRF protection
+6. Use TypeScript for type safety in auth flows
+7. Keep sensitive data in environment variables
+8. Implement rate limiting for auth endpoints
+9. Use proper password hashing and salting
+10. Maintain secure session timeout policies
