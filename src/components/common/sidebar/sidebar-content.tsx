@@ -5,7 +5,6 @@ import { SidebarNav } from "./sidebar-nav";
 import { SidebarToggle } from "./sidebar-toggle";
 import { UserMenu } from "./user-menu";
 import { navigation } from "./navigation";
-import logo from "@/assets/logo.svg";
 import type { UserResource } from "@clerk/types";
 import { ThemeSwitcher } from "../theme-switcher";
 
@@ -20,7 +19,7 @@ export function SidebarContent({ user, collapsed, onToggle }: SidebarContentProp
     <div className="flex h-full flex-col">
       <div className="flex h-16 items-center border-b px-4">
         <Link href="/app" className="flex items-center">
-          <Image src={logo} alt="Vezumo Logo" width={20} height={20} className={cn("ml-1.5 dark:invert")} />
+          <Image src="/logo.svg" alt="Vezumo Logo" width={20} height={20} className={cn("ml-1.5 dark:invert")} />
           <span
             className={cn(
               "ml-2 text-xl font-semibold tracking-tight transition-all duration-300",

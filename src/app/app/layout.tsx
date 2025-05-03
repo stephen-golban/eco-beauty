@@ -1,27 +1,10 @@
+import { CustomRedirect } from "@/components/custom-redirect";
 import { auth } from "@clerk/nextjs/server";
 
-import { Sidebar } from "@/components/common";
-import { SubscriptionLevelProvider } from "@/components/providers";
-
-import { getUserSubscriptionLevel } from "@/lib/subscription";
-
-export default async function MainLayout({ children }: { children: React.ReactNode }) {
+export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const { userId } = await auth();
-
   if (!userId) {
-    return null;
+    return <CustomRedirect redirectTo="/" />;
   }
-
-  const userSubscriptionLevel = await getUserSubscriptionLevel(userId);
-
-  return (
-    <SubscriptionLevelProvider userSubscriptionLevel={userSubscriptionLevel}>
-      <div className="flex min-h-screen">
-        <Sidebar />
-        <main className="flex-1">
-          <div className="h-full p-6 pt-16 md:pt-16">{children}</div>
-        </main>
-      </div>
-    </SubscriptionLevelProvider>
-  );
+  return <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-16 py-10">{children}</div>;
 }

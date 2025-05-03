@@ -1,184 +1,153 @@
-import Link from "next/link";
+"use client";
+import React from "react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
-import { PlusCircle, FileText, Download, Star, Clock, MoreVertical } from "lucide-react";
+const mockOrders = [
+  {
+    id: 1,
+    product: "Hydrating Face Serum",
+    image: "/images/products/serum.jpg",
+    price: 39.99,
+    date: "2024-05-01",
+  },
+  {
+    id: 2,
+    product: "Rose Water Toner",
+    image: "/images/products/toner.jpg",
+    price: 24.99,
+    date: "2024-04-28",
+  },
+  {
+    id: 3,
+    product: "SPF 50+ Sunscreen",
+    image: "/images/products/sunscreen.jpg",
+    price: 29.99,
+    date: "2024-04-20",
+  },
+  {
+    id: 4,
+    product: "Vitamin C Cream",
+    image: "/images/products/cream.jpg",
+    price: 34.99,
+    date: "2024-04-15",
+  },
+];
 
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+const statCards = [
+  {
+    label: "Loyalty Points",
+    value: "1,250",
+    sub: "+150 this month",
+    icon: "💎",
+  },
+  {
+    label: "Orders",
+    value: "23",
+    sub: "+2 this month",
+    icon: "🛍️",
+  },
+  {
+    label: "Wishlist",
+    value: "8",
+    sub: "+1 this month",
+    icon: "💖",
+  },
+];
 
-export default function MainPage() {
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const orderData = [3, 4, 4, 5, 3, 3, 2, 2, 5, 4, 1, 4];
+
+export default function BeautyDashboard() {
   return (
-    <>
-      {/* Welcome Section */}
-      <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+    <main className="min-h-screen px-4">
+      {/* Header */}
+      <div className="mx-auto mb-8 flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back, John Doe 👋</h1>
-          <p className="text-muted-foreground mt-2">Here&apos;s what&apos;s happening with your resumes</p>
-        </div>
-        <div className="flex gap-3">
-          <Button variant="outline">Import Resume</Button>
-          <Button className="flex items-center gap-2" asChild>
-            <Link href="/app/editor">
-              <PlusCircle className="h-4 w-4" />
-              Create New Resume
-            </Link>
-          </Button>
+          <h1 className="text-3xl font-bold">Welcome back, Jane!</h1>
+          <p className="mt-1 text-gray-500">Here&apos;s your beauty dashboard overview.</p>
         </div>
       </div>
-
-      {/* Stats Overview */}
-      <div className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Resumes</CardTitle>
-            <FileText className="text-muted-foreground h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-muted-foreground text-xs">+2 from last month</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Downloads</CardTitle>
-            <Download className="text-muted-foreground h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">24</div>
-            <p className="text-muted-foreground text-xs">+5 this week</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Profile Views</CardTitle>
-            <Star className="text-muted-foreground h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">120</div>
-            <p className="text-muted-foreground text-xs">+42% from last month</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Applications</CardTitle>
-            <Clock className="text-muted-foreground h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">4</div>
-            <p className="text-muted-foreground text-xs">Applications in progress</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Recent Resumes */}
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Recent Resumes</CardTitle>
-            <CardDescription>Your recently edited resumes</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Software Engineer Resume",
-                  company: "Tech Corp Application",
-                  progress: 85,
-                  lastEdit: "2 hours ago",
-                },
-                {
-                  title: "Product Manager Resume",
-                  company: "Product Co",
-                  progress: 92,
-                  lastEdit: "1 day ago",
-                },
-                {
-                  title: "UX Designer Resume",
-                  company: "Design Agency",
-                  progress: 68,
-                  lastEdit: "3 days ago",
-                },
-              ].map((resume, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="flex-1 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">{resume.title}</p>
-                        <p className="text-muted-foreground text-sm">{resume.company}</p>
+      {/* Tabs */}
+      <Tabs defaultValue="overview" className="mx-auto mb-6 max-w-7xl">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="orders">Orders</TabsTrigger>
+          <TabsTrigger value="wishlist">Wishlist</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview">
+          {/* Stat Cards */}
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {statCards.map((card) => (
+              <Card key={card.label} className="flex flex-col gap-2 p-6">
+                <CardHeader className="flex flex-col gap-2 p-0">
+                  <span className="text-2xl">{card.icon}</span>
+                  <CardTitle className="text-2xl font-bold">{card.value}</CardTitle>
+                  <CardDescription className="text-sm text-gray-500">{card.label}</CardDescription>
+                  <Badge variant="secondary" className="w-fit text-xs text-green-600">
+                    {card.sub}
+                  </Badge>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+          {/* Main Content */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {/* Chart */}
+            <Card className="col-span-2">
+              <CardHeader className="mb-4">
+                <CardTitle>Order Overview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex h-48 items-end gap-2">
+                  {orderData.map((val, idx) => (
+                    <div key={months[idx]} className="flex w-6 flex-col items-center">
+                      <div
+                        className="w-full rounded-t bg-pink-400"
+                        style={{ height: `${val * 30}px` }}
+                        title={`Orders: ${val}`}
+                      ></div>
+                      <span className="mt-1 text-xs text-gray-400">{months[idx]}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            {/* Recent Orders */}
+            <Card>
+              <CardHeader className="mb-4">
+                <CardTitle>Recent Orders</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="divide-y">
+                  {mockOrders.map((order) => (
+                    <li key={order.id} className="flex items-center gap-3 py-3">
+                      <Avatar>
+                        <AvatarImage
+                          src={order.image}
+                          alt={order.product}
+                          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
+                            (e.currentTarget.src = "/images/products/placeholder.jpg")
+                          }
+                        />
+                        <AvatarFallback>{order.product[0]}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <div className="font-medium">{order.product}</div>
+                        <div className="text-xs text-gray-400">{order.date}</div>
                       </div>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoreVertical className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>Edit</DropdownMenuItem>
-                          <DropdownMenuItem>Download</DropdownMenuItem>
-                          <DropdownMenuItem>Share</DropdownMenuItem>
-                          <DropdownMenuItem className="text-destructive">Delete</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
-                    <div className="space-y-1">
-                      <Progress value={resume.progress} />
-                      <p className="text-muted-foreground text-xs">Last edited {resume.lastEdit}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Activity Feed */}
-        <Card className="col-span-1">
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Your resume-related activities</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                {
-                  action: "Resume Viewed",
-                  description: "Your Software Engineer resume was viewed by Tech Corp",
-                  time: "2 hours ago",
-                },
-                {
-                  action: "Download",
-                  description: "You downloaded Product Manager resume as PDF",
-                  time: "5 hours ago",
-                },
-                {
-                  action: "Update",
-                  description: "Updated skills section in UX Designer resume",
-                  time: "1 day ago",
-                },
-                {
-                  action: "Share",
-                  description: "Shared Software Engineer resume via link",
-                  time: "2 days ago",
-                },
-              ].map((activity, index) => (
-                <div key={index} className="hover:bg-muted/50 flex items-start gap-4 rounded-lg p-3">
-                  <div className="flex-1">
-                    <p className="font-medium">{activity.action}</p>
-                    <p className="text-muted-foreground text-sm">{activity.description}</p>
-                    <p className="text-muted-foreground mt-1 text-xs">{activity.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </>
+                      <div className="font-semibold text-pink-500">${order.price.toFixed(2)}</div>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        {/* You can add more <TabsContent value="orders">...</TabsContent> for other tabs */}
+      </Tabs>
+    </main>
   );
 }
