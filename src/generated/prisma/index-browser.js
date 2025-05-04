@@ -161,6 +161,34 @@ exports.Prisma.DealScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  name: 'name',
+  email: 'email',
+  loyaltyPoints: 'loyaltyPoints',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  total: 'total',
+  status: 'status',
+  placedAt: 'placedAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  image: 'image',
+  quantity: 'quantity',
+  price: 'price'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -184,7 +212,10 @@ exports.Gender = exports.$Enums.Gender = {
 exports.Prisma.ModelName = {
   Category: 'Category',
   Product: 'Product',
-  Deal: 'Deal'
+  Deal: 'Deal',
+  User: 'User',
+  Order: 'Order',
+  OrderItem: 'OrderItem'
 };
 
 /**

@@ -15,6 +15,8 @@ import { useCardStore } from "@/lib/card-store";
 import React, { useRef } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { placeOrderAction } from "@/lib/place-order";
+import { useTransition, useState } from "react";
 
 // Cart button with badge, can be reused
 export function CartButton({ count, ...props }: { count: number } & React.ComponentProps<typeof Button>) {
@@ -37,14 +39,27 @@ export function CardDrawer() {
   const { isSignedIn } = useUser();
   const router = useRouter();
   const drawerCloseRef = useRef<HTMLButtonElement>(null);
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
-  const handleCheckout = () => {
-    if (!isSignedIn) {
-      drawerCloseRef.current?.click();
-      router.push("/auth/sign-in");
-      return;
-    }
-    return router.push("/checkout");
+  const handlePlaceOrder = () => {
+    setError(null);
+    startTransition(async () => {
+      try {
+        await placeOrderAction(
+          items.map((item) => ({
+            productId: item.product.id,
+            quantity: item.quantity,
+            price: Number(item.product.price),
+            images: item.product.images,
+          })),
+        );
+        clearCart();
+        router.push("/app");
+      } catch {
+        setError("Order failed. Please try again.");
+      }
+    });
   };
 
   return (
@@ -107,9 +122,14 @@ export function CardDrawer() {
             <span>Total</span>
             <span>MDL {total}</span>
           </div>
-          <Button disabled={items.length === 0} className="w-full" onClick={handleCheckout}>
-            Checkout
+          <Button
+            disabled={items.length === 0 || !isSignedIn || isPending}
+            className="w-full"
+            onClick={handlePlaceOrder}
+          >
+            {isPending ? "Placing Order..." : "Place Order"}
           </Button>
+          {error && <div className="mt-2 text-center text-red-500">{error}</div>}
           <Button variant="outline" onClick={clearCart} disabled={items.length === 0} className="w-full">
             Clear Cart
           </Button>

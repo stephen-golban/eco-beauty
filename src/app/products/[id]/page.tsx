@@ -4,6 +4,8 @@ import ProductImageGallery from "./ProductImageGallery";
 import { Badge } from "@/components/ui/badge";
 import AddToCartForm from "./AddToCartForm";
 import { Product } from "@/generated/prisma";
+import AddToWishlistButton from "./AddToWishlistButton";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -12,6 +14,17 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   });
 
   if (!product) return notFound();
+
+  // Get current user and wishlist
+  const { userId } = await auth();
+  let inWishlist = false;
+  if (userId) {
+    const user = await prisma.user.findUnique({
+      where: { clerkId: userId },
+      include: { wishlist: { select: { id: true } } },
+    });
+    inWishlist = !!user?.wishlist.some((p) => p.id === id);
+  }
 
   // Convert Decimal fields to string for display
   const price = product.price.toString();
@@ -95,6 +108,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {rating && <div className="mt-2 text-sm text-yellow-600 dark:text-yellow-300">Rating: {rating} / 5</div>}
 
           {/* Add to Cart UI */}
+          <AddToWishlistButton productId={product.id} inWishlist={inWishlist} />
           <AddToCartForm product={safeProduct as unknown as Product} />
         </div>
       </div>

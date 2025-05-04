@@ -33,28 +33,30 @@ model Category {
 
 // Product model for all shop items
 model Product {
-  id            String   @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String
   description   String
-  price         Decimal  @db.Decimal(10, 2)
+  price         Decimal     @db.Decimal(10, 2)
   images        String[] // Array of image URLs
   categoryId    String
-  category      Category @relation(fields: [categoryId], references: [id])
+  category      Category    @relation(fields: [categoryId], references: [id])
   gender        Gender? // Optional: for men/women/unisex
   ingredients   String[] // Array of ingredients (for beauty products)
   benefits      String[] // Array of product benefits (for beauty products)
   howToUse      String? // Optional: for beauty products
   size          String? // Product size/volume (optional)
-  sku           String   @unique
-  stock         Int      @default(0)
-  isOrganic     Boolean? @default(false)
-  isVegan       Boolean? @default(false)
-  isCrueltyFree Boolean? @default(false)
-  rating        Decimal? @db.Decimal(3, 2)
-  isDeal        Boolean  @default(false) // Mark if this product is a deal
+  sku           String      @unique
+  stock         Int         @default(0)
+  isOrganic     Boolean?    @default(false)
+  isVegan       Boolean?    @default(false)
+  isCrueltyFree Boolean?    @default(false)
+  rating        Decimal?    @db.Decimal(3, 2)
+  isDeal        Boolean     @default(false) // Mark if this product is a deal
   dealLabel     String? // e.g. "Sale", "Black Friday", "2-for-1"
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  wishlistUsers User[]      @relation("Wishlist")
+  orderItems    OrderItem[]
 
   deals Deal[] // Many-to-many relation with Deal
 
@@ -73,4 +75,41 @@ model Deal {
   products    Product[] // Many-to-many
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+// User model for authentication and dashboard info
+model User {
+  id            String    @id @default(cuid())
+  clerkId       String    @unique
+  name          String
+  email         String    @unique
+  loyaltyPoints Int       @default(0)
+  orders        Order[]
+  wishlist      Product[] @relation("Wishlist")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Order model for user orders
+model Order {
+  id        String      @id @default(cuid())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
+  items     OrderItem[]
+  total     Decimal     @db.Decimal(10, 2)
+  status    String // e.g., "pending", "completed"
+  placedAt  DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+// Join table for Order and Product, with quantity and price at order time
+model OrderItem {
+  id        String  @id @default(cuid())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  image     String
+  quantity  Int     @default(1)
+  price     Decimal @db.Decimal(10, 2) // price at the time of order
 }

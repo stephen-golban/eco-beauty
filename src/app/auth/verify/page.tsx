@@ -16,6 +16,7 @@ import { Form, FormSubmitButton } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { verifySchema, VerifyDefaultValues, type VerifySchema } from "./schema";
 
+import { createUser } from "./action";
 import { displayErrors } from "@/lib/utils";
 
 export default function VerifyPage() {
@@ -41,8 +42,14 @@ export default function VerifyPage() {
       // If verification was completed, set the session to active
       // and redirect the user
       if (signUpAttempt.status === "complete") {
-        await setActive({ session: signUpAttempt.createdSessionId });
-        router.push("/app");
+        const userData = {
+          email: signUpAttempt.emailAddress ?? "",
+          clerkId: signUpAttempt.createdUserId ?? "",
+          name: `${signUpAttempt.firstName} ${signUpAttempt.lastName}`,
+        };
+        await createUser(userData)
+          .then(() => setActive({ session: signUpAttempt.createdSessionId }))
+          .then(() => router.push("/app"));
       } else {
         // If the status is not complete, check why. User may need to
         // complete further steps.
@@ -79,7 +86,6 @@ export default function VerifyPage() {
       description="Please enter the verification code we sent to your email address."
     >
       <AuthCard
-        hideSocialAuth
         alternateAction={{
           prompt: "Need help?",
           linkText: "Contact Support",

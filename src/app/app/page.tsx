@@ -1,72 +1,45 @@
-"use client";
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import { RecentOrderAvatar } from "./RecentOrderAvatar";
+import { auth } from "@clerk/nextjs/server";
+import { getDashboardData } from "./getDashboardData";
 
-const mockOrders = [
-  {
-    id: 1,
-    product: "Hydrating Face Serum",
-    image: "/images/products/serum.jpg",
-    price: 39.99,
-    date: "2024-05-01",
-  },
-  {
-    id: 2,
-    product: "Rose Water Toner",
-    image: "/images/products/toner.jpg",
-    price: 24.99,
-    date: "2024-04-28",
-  },
-  {
-    id: 3,
-    product: "SPF 50+ Sunscreen",
-    image: "/images/products/sunscreen.jpg",
-    price: 29.99,
-    date: "2024-04-20",
-  },
-  {
-    id: 4,
-    product: "Vitamin C Cream",
-    image: "/images/products/cream.jpg",
-    price: 34.99,
-    date: "2024-04-15",
-  },
-];
+export default async function BeautyDashboard() {
+  const { userId } = await auth();
+  if (!userId) {
+    // Should never happen due to layout, but fallback just in case
+    return <div className="p-8 text-center">Not authenticated</div>;
+  }
+  const data = await getDashboardData(userId);
 
-const statCards = [
-  {
-    label: "Loyalty Points",
-    value: "1,250",
-    sub: "+150 this month",
-    icon: "💎",
-  },
-  {
-    label: "Orders",
-    value: "23",
-    sub: "+2 this month",
-    icon: "🛍️",
-  },
-  {
-    label: "Wishlist",
-    value: "8",
-    sub: "+1 this month",
-    icon: "💖",
-  },
-];
+  const statCards = [
+    {
+      label: "Loyalty Points",
+      value: data.loyaltyPoints.toLocaleString(),
+      icon: "💎",
+      empty: data.loyaltyPoints === 0,
+    },
+    {
+      label: "Orders",
+      value: data.ordersCount.toLocaleString(),
+      icon: "🛍️",
+      empty: data.ordersCount === 0,
+    },
+    {
+      label: "Wishlist",
+      value: data.wishlistCount.toLocaleString(),
+      icon: "💖",
+      empty: data.wishlistCount === 0,
+    },
+  ];
 
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const orderData = [3, 4, 4, 5, 3, 3, 2, 2, 5, 4, 1, 4];
-
-export default function BeautyDashboard() {
   return (
     <main className="min-h-screen px-4">
       {/* Header */}
       <div className="mx-auto mb-8 flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Welcome back, Jane!</h1>
+          <h1 className="text-3xl font-bold">Welcome back, {data.user.name}!</h1>
           <p className="mt-1 text-gray-500">Here&apos;s your beauty dashboard overview.</p>
         </div>
       </div>
@@ -86,9 +59,7 @@ export default function BeautyDashboard() {
                   <span className="text-2xl">{card.icon}</span>
                   <CardTitle className="text-2xl font-bold">{card.value}</CardTitle>
                   <CardDescription className="text-sm text-gray-500">{card.label}</CardDescription>
-                  <Badge variant="secondary" className="w-fit text-xs text-green-600">
-                    {card.sub}
-                  </Badge>
+                  {card.empty && <span className="mt-2 text-xs text-gray-400">No {card.label.toLowerCase()} yet</span>}
                 </CardHeader>
               </Card>
             ))}
@@ -101,18 +72,22 @@ export default function BeautyDashboard() {
                 <CardTitle>Order Overview</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex h-48 items-end gap-2">
-                  {orderData.map((val, idx) => (
-                    <div key={months[idx]} className="flex w-6 flex-col items-center">
-                      <div
-                        className="w-full rounded-t bg-pink-400"
-                        style={{ height: `${val * 30}px` }}
-                        title={`Orders: ${val}`}
-                      ></div>
-                      <span className="mt-1 text-xs text-gray-400">{months[idx]}</span>
-                    </div>
-                  ))}
-                </div>
+                {data.ordersCount === 0 ? (
+                  <div className="flex h-48 items-center justify-center text-gray-400">No orders yet this year.</div>
+                ) : (
+                  <div className="flex h-48 items-end gap-2">
+                    {data.orderData.map((val, idx) => (
+                      <div key={data.months[idx]} className="flex w-6 flex-col items-center">
+                        <div
+                          className="w-full rounded-t bg-pink-400"
+                          style={{ height: `${val * 30}px` }}
+                          title={`Orders: ${val}`}
+                        ></div>
+                        <span className="mt-1 text-xs text-gray-400">{data.months[idx]}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
             {/* Recent Orders */}
@@ -121,27 +96,22 @@ export default function BeautyDashboard() {
                 <CardTitle>Recent Orders</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="divide-y">
-                  {mockOrders.map((order) => (
-                    <li key={order.id} className="flex items-center gap-3 py-3">
-                      <Avatar>
-                        <AvatarImage
-                          src={order.image}
-                          alt={order.product}
-                          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-                            (e.currentTarget.src = "/images/products/placeholder.jpg")
-                          }
-                        />
-                        <AvatarFallback>{order.product[0]}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <div className="font-medium">{order.product}</div>
-                        <div className="text-xs text-gray-400">{order.date}</div>
-                      </div>
-                      <div className="font-semibold text-pink-500">${order.price.toFixed(2)}</div>
-                    </li>
-                  ))}
-                </ul>
+                {data.recentOrders.length === 0 ? (
+                  <div className="py-8 text-center text-gray-400">No recent orders yet.</div>
+                ) : (
+                  <ul className="divide-y">
+                    {data.recentOrders.map((order) => (
+                      <li key={order.id} className="flex items-center gap-3 py-3">
+                        <RecentOrderAvatar image={order.image} product={order.product} />
+                        <div className="flex-1">
+                          <div className="font-medium">{order.product}</div>
+                          <div className="text-xs text-gray-400">{order.date}</div>
+                        </div>
+                        <div className="font-semibold text-pink-500">${order.price.toFixed(2)}</div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </CardContent>
             </Card>
           </div>
