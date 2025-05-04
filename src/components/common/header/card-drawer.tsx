@@ -17,6 +17,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { placeOrderAction } from "@/lib/place-order";
 import { useTransition, useState } from "react";
+import Image from "next/image";
 
 // Cart button with badge, can be reused
 export function CartButton({ count, ...props }: { count: number } & React.ComponentProps<typeof Button>) {
@@ -79,7 +80,13 @@ export function CardDrawer() {
               {items.map(({ product, quantity }) => (
                 <li key={product.id} className="flex items-center gap-4 border-b pb-4 last:border-b-0 last:pb-0">
                   <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
-                    <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover" />
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      width={64}
+                      height={64}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div className="flex-1">
                     <div className="truncate font-medium">{product.name}</div>

@@ -20,6 +20,8 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-expressions": "off",
       "@typescript-eslint/no-this-alias": "off",
     },
+  },
+  {
     ignores: ["src/generated/**"],
   },
 ];
