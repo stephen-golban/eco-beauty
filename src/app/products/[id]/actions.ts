@@ -21,6 +21,7 @@ export async function addToWishlistAction(productId: string) {
       },
     },
   });
+  revalidatePath("/products");
   revalidatePath(`/products/${productId}`);
 }
 
@@ -41,5 +42,6 @@ export async function removeFromWishlistAction(productId: string) {
       },
     },
   });
+  revalidatePath("/products");
   revalidatePath(`/products/${productId}`);
 }

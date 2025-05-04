@@ -44,19 +44,15 @@ export default function SignUpPage() {
   });
   return (
     <AuthLayout
-      title="Let's Verify Your Account"
-      description="Please enter the verification code we sent to your email address."
+      title="Verifică-ți contul"
+      description="Te rugăm să introduci adresa de email pentru a primi instrucțiuni de resetare."
     >
-      <AuthCard
-        hideSocialAuth
-        alternateAction={{ href: "/support", prompt: "Need help?", linkText: "Contact Support" }}
-      >
+      <AuthCard>
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-6">
             <div className="space-y-6">
               <EmailInput />
-
-              <FormSubmitButton disabled={!form.formState.isValid}>Send Reset Instructions</FormSubmitButton>
+              <FormSubmitButton disabled={!form.formState.isValid}>Trimite instrucțiuni de resetare</FormSubmitButton>
             </div>
           </form>
         </Form>

@@ -55,13 +55,10 @@ export default function ResetPasswordPage() {
 
   return (
     <AuthLayout
-      title="Let's Verify Your Account"
-      description="Please enter the verification code we sent to your email address."
+      title="Resetează-ți parola"
+      description="Te rugăm să introduci codul de verificare primit pe email și noua ta parolă."
     >
-      <AuthCard
-        hideSocialAuth
-        alternateAction={{ linkText: "Sign In", href: "/auth/sign-in", prompt: "Remember your password?" }}
-      >
+      <AuthCard alternateAction={{ linkText: "Autentificare", href: "/auth/sign-in", prompt: "Ți-ai amintit parola?" }}>
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-6">
             <div className="space-y-6">
@@ -70,13 +67,9 @@ export default function ResetPasswordPage() {
                 disabled={form.formState.isSubmitting}
                 aria-disabled={form.formState.isSubmitting}
               />
-              <PasswordInput name="password" placeholder="Enter your new password" autoComplete="new-password" />
-              <PasswordInput
-                name="confirmPassword"
-                autoComplete="new-password"
-                placeholder="Confirm your new password"
-              />
-              <FormSubmitButton disabled={!form.formState.isValid}>Submit</FormSubmitButton>
+              <PasswordInput name="password" placeholder="Introdu noua parolă" autoComplete="new-password" />
+              <PasswordInput name="confirmPassword" autoComplete="new-password" placeholder="Confirmă noua parolă" />
+              <FormSubmitButton disabled={!form.formState.isValid}>Resetează parola</FormSubmitButton>
             </div>
           </form>
         </Form>

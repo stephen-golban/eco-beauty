@@ -9,9 +9,10 @@ export default function PrivacyPage() {
     <div className="mx-auto max-w-6xl space-y-12 px-4 py-8">
       {/* Hero Section */}
       <div className="space-y-4 text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Privacy Policy</h1>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Politica de Confidențialitate EcoBeauty</h1>
         <p className="text-muted-foreground mx-auto max-w-3xl text-xl">
-          We&apos;re committed to protecting your privacy and ensuring the security of your personal information.
+          La EcoBeauty, confidențialitatea și siguranța datelor tale sunt prioritare. Ne asigurăm că informațiile tale
+          personale și preferințele privind produsele eco-friendly sunt protejate și folosite responsabil.
         </p>
       </div>
 
@@ -22,10 +23,11 @@ export default function PrivacyPage() {
             <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
               <Shield className="text-primary h-6 w-6" />
             </div>
-            <CardTitle>Data Protection</CardTitle>
+            <CardTitle>Protecția Datelor</CardTitle>
             <CardDescription>
-              Your data is encrypted and stored securely using industry-standard protocols. We regularly update our
-              security measures to protect against unauthorized access.
+              Datele tale sunt criptate și stocate în siguranță, folosind cele mai bune practici din industrie.
+              Actualizăm constant măsurile de securitate pentru a preveni accesul neautorizat la preferințele și
+              istoricul tău de produse eco.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -34,10 +36,11 @@ export default function PrivacyPage() {
             <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
               <Eye className="text-primary h-6 w-6" />
             </div>
-            <CardTitle>Data Transparency</CardTitle>
+            <CardTitle>Transparență totală</CardTitle>
             <CardDescription>
-              We&apos;re transparent about what data we collect and how we use it. You have full control over your
-              personal information.
+              Suntem transparenți cu privire la datele pe care le colectăm, inclusiv preferințele tale pentru produse
+              naturale și sustenabile. Ai control deplin asupra informațiilor tale și poți vedea oricând ce date deții
+              la noi.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -47,69 +50,69 @@ export default function PrivacyPage() {
       <div className="space-y-8">
         <Card>
           <CardHeader>
-            <CardTitle>Information We Collect</CardTitle>
+            <CardTitle>Ce informații colectăm</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <h3 className="font-medium">Account Information</h3>
+            <h3 className="font-medium">Date de cont</h3>
             <p className="text-muted-foreground">
-              When you create an account, we collect basic information such as your name and email address to provide
-              you with our services and communicate with you about your account.
+              La crearea unui cont EcoBeauty, colectăm numele, adresa de email și preferințele tale pentru produse de
+              frumusețe eco, pentru a-ți oferi recomandări personalizate și o experiență sigură.
             </p>
 
-            <h3 className="font-medium">Resume Data</h3>
+            <h3 className="font-medium">Preferințe de produse</h3>
             <p className="text-muted-foreground">
-              The information you include in your resumes is stored securely and is only used to provide you with our
-              resume creation and management services.
+              Informațiile despre produsele eco-friendly pe care le vizualizezi sau le adaugi la favorite sunt folosite
+              doar pentru a-ți oferi sugestii relevante și pentru a îmbunătăți platforma.
             </p>
 
-            <h3 className="font-medium">Usage Information</h3>
+            <h3 className="font-medium">Date de utilizare</h3>
             <p className="text-muted-foreground">
-              We collect anonymous usage data to improve our services and user experience. This includes information
-              about how you interact with our platform.
+              Colectăm date anonime despre modul în care folosești EcoBeauty pentru a optimiza serviciile și a promova
+              produse sustenabile potrivite pentru tine.
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>How We Use Your Information</CardTitle>
+            <CardTitle>Cum folosim informațiile tale</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <ul className="text-muted-foreground list-inside list-disc space-y-2">
-              <li>To provide and maintain our resume building services</li>
-              <li>To improve and personalize your experience on our platform</li>
-              <li>To communicate with you about your account and our services</li>
-              <li>To detect and prevent fraud or abuse of our services</li>
-              <li>To comply with legal obligations</li>
+              <li>Pentru a-ți oferi recomandări personalizate de produse eco și naturale</li>
+              <li>Pentru a îmbunătăți experiența ta pe platformă și a promova sustenabilitatea</li>
+              <li>Pentru a comunica cu tine despre contul tău și noutăți EcoBeauty</li>
+              <li>Pentru a preveni fraudele și a proteja comunitatea EcoBeauty</li>
+              <li>Pentru a respecta obligațiile legale și etice privind protecția datelor</li>
             </ul>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Your Privacy Rights</CardTitle>
+            <CardTitle>Drepturile tale privind confidențialitatea</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-muted-foreground">You have the right to:</p>
+            <p className="text-muted-foreground">Ai dreptul să:</p>
             <ul className="text-muted-foreground list-inside list-disc space-y-2">
-              <li>Access your personal information</li>
-              <li>Correct inaccurate or incomplete information</li>
-              <li>Request deletion of your personal information</li>
-              <li>Export your data in a portable format</li>
-              <li>Opt-out of marketing communications</li>
+              <li>Accesezi și gestionezi datele tale personale și preferințele de produse</li>
+              <li>Corectezi informațiile inexacte sau incomplete</li>
+              <li>Soliciți ștergerea datelor tale personale</li>
+              <li>Expotezi datele tale într-un format portabil</li>
+              <li>Renunți la comunicările de marketing EcoBeauty</li>
             </ul>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Data Retention</CardTitle>
+            <CardTitle>Păstrarea datelor</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              We retain your personal information for as long as necessary to provide you with our services and comply
-              with legal obligations. If you delete your account, we will remove your personal information from our
-              systems within 30 days.
+              Păstrăm datele tale personale și preferințele de produse eco atât timp cât ai cont pe EcoBeauty sau cât
+              este necesar pentru a respecta legea. Dacă îți ștergi contul, datele tale vor fi eliminate din sistemele
+              noastre în 30 de zile.
             </p>
           </CardContent>
         </Card>

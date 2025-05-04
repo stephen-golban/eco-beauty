@@ -10,10 +10,9 @@ import { HeaderContainer } from "./header-container";
 import { HeaderLogo } from "./header-logo";
 import { NavLink } from "./nav-link";
 import { HeaderActions } from "./header-actions";
-import { SearchBar } from "./search-bar";
 import { MobileNav } from "./mobile-nav";
 import { CardDrawer } from "./card-drawer";
-import { UserMenu } from "../sidebar/user-menu";
+import { UserMenu } from "./user-menu";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function Header() {
@@ -74,20 +73,18 @@ export function Header() {
         <HeaderLogo href={isSignedIn ? "/app" : "/"} />
         <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
           <NavLink href="/categories" isActive={pathname === "/categories"}>
-            Categories
+            Categorii
           </NavLink>
           <NavLink href="/products" isActive={pathname === "/products"}>
-            Products
+            Produse
           </NavLink>
           <NavLink href="/deals" isActive={pathname === "/deals"}>
-            Deals
+            Oferte
           </NavLink>
         </nav>
       </div>
 
-      <div className="hidden flex-1 justify-center px-8 md:flex">
-        <SearchBar />
-      </div>
+      <div className="hidden flex-1 justify-center px-8 md:flex">{/* SearchBar removed */}</div>
 
       <HeaderActions>
         <div className="hidden gap-x-2 md:flex md:items-center">
@@ -97,11 +94,11 @@ export function Header() {
             <>
               <Link href="/auth/sign-in">
                 <Button variant="ghost" className="text-sm">
-                  Sign in
+                  Autentificare
                 </Button>
               </Link>
               <Link href="/auth/sign-up">
-                <Button className="text-sm">Get Started</Button>
+                <Button className="text-sm">Creează cont</Button>
               </Link>
               <div className="bg-foreground/60 mx-2 h-6 w-[1px]" />
             </>

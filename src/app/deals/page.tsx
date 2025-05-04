@@ -12,10 +12,10 @@ export default async function DealsPage() {
   });
 
   return (
-    <main className="mx-auto mt-10 max-w-5xl px-4 py-12">
-      <h1 className="mb-6 text-3xl font-bold">Deals</h1>
+    <main className="mx-auto max-w-5xl px-4">
+      <h1 className="mb-6 text-3xl font-bold">Oferte</h1>
       {deals.length === 0 ? (
-        <div className="text-muted-foreground text-lg">No deals available at the moment.</div>
+        <div className="text-muted-foreground text-lg">Nu există oferte disponibile în acest moment.</div>
       ) : (
         <div className="space-y-12">
           {deals.map((deal) => (
@@ -24,7 +24,7 @@ export default async function DealsPage() {
               {deal.description && <p className="text-muted-foreground mb-4">{deal.description}</p>}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                 {deal.products.length === 0 ? (
-                  <div className="text-muted-foreground col-span-full">No products for this deal.</div>
+                  <div className="text-muted-foreground col-span-full">Nu există produse pentru această ofertă.</div>
                 ) : (
                   deal.products.map((product) => <ProductCard key={product.id} {...product} isDeal />)
                 )}

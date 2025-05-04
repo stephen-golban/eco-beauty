@@ -69,31 +69,31 @@ export default function VerifyPage() {
 
     try {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-      toast.success("Verification code sent successfully!");
+      toast.success("Codul de verificare a fost trimis cu succes!");
       setCooldown(30); // Start 30 second cooldown
     } catch (error) {
       if (isClerkAPIResponseError(error)) {
         displayErrors(error.errors);
       } else {
-        toast.error("Failed to send verification code. Please try again.");
+        toast.error("Nu s-a putut trimite codul de verificare. Vă rugăm să încercați mai târziu.");
       }
     }
   };
 
   return (
     <AuthLayout
-      title="Let's Verify Your Account"
-      description="Please enter the verification code we sent to your email address."
+      title="Verifică-ți contul"
+      description="Te rugăm să introduci codul de verificare pe care l-am trimis pe adresa ta de email."
     >
       <AuthCard
         alternateAction={{
-          prompt: "Need help?",
-          linkText: "Contact Support",
+          prompt: "Ai nevoie de ajutor?",
+          linkText: "Contactează suportul",
           href: "/support",
         }}
         action={{
-          text: cooldown > 0 ? `Resend code in ${cooldown}s` : "Resend verification code",
-          loadingText: "Sending code...",
+          text: cooldown > 0 ? `Retrimite codul în ${cooldown}s` : "Retrimite codul de verificare",
+          loadingText: "Se trimite codul...",
           onClick: handleResendCode,
         }}
       >
@@ -106,7 +106,7 @@ export default function VerifyPage() {
                 disabled={form.formState.isSubmitting}
                 aria-disabled={form.formState.isSubmitting}
               />
-              <FormSubmitButton disabled={!form.formState.isValid}>Verify</FormSubmitButton>
+              <FormSubmitButton disabled={!form.formState.isValid}>Verifică</FormSubmitButton>
             </div>
           </form>
         </Form>

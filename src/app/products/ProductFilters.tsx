@@ -30,7 +30,7 @@ export function ProductFilters({
   return (
     <div className="space-y-8">
       <div>
-        <h3 className="mb-2 text-lg font-semibold">Category</h3>
+        <h3 className="mb-2 text-lg font-semibold">Categorie</h3>
         <ul className="space-y-2">
           <li>
             <Button
@@ -39,7 +39,7 @@ export function ProductFilters({
               className="w-full justify-start"
               onClick={() => onCategoryChange(null)}
             >
-              All
+              Toate
             </Button>
           </li>
           {categories.map((cat) => (
@@ -57,15 +57,15 @@ export function ProductFilters({
         </ul>
       </div>
       <div>
-        <h3 className="mb-2 text-lg font-semibold">Price</h3>
+        <h3 className="mb-2 text-lg font-semibold">Preț</h3>
         <Slider min={minPrice} max={maxPrice} value={priceRange} onValueChange={onPriceChange} />
         <div className="mt-1 flex justify-between text-xs">
-          <span>MDL {priceRange[0]}</span>
-          <span>MDL {priceRange[1]}</span>
+          <span>{priceRange[0]} MDL</span>
+          <span>{priceRange[1]} MDL</span>
         </div>
       </div>
       <div>
-        <h3 className="mb-2 text-lg font-semibold">Attributes</h3>
+        <h3 className="mb-2 text-lg font-semibold">Atribute</h3>
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-2">
             <Checkbox checked={attributes.isOrganic} onCheckedChange={() => onAttributeChange("isOrganic")} />
@@ -77,7 +77,7 @@ export function ProductFilters({
           </label>
           <label className="flex items-center gap-2">
             <Checkbox checked={attributes.isCrueltyFree} onCheckedChange={() => onAttributeChange("isCrueltyFree")} />
-            Cruelty-Free
+            Fără cruzime
           </label>
         </div>
       </div>

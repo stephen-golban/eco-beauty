@@ -12,10 +12,10 @@ export default function AboutPage() {
     <div className="mx-auto max-w-6xl space-y-16 px-4 py-8">
       {/* Hero Section */}
       <div className="space-y-4 text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Empowering Your Career Journey</h1>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Inspirăm frumusețea sustenabilă</h1>
         <p className="text-muted-foreground mx-auto max-w-3xl text-xl">
-          We&apos;re on a mission to help job seekers create professional resumes that stand out and make a lasting
-          impression.
+          Suntem dedicați să ajutăm oamenii să descopere produse de frumusețe eco-friendly care respectă natura și
+          sănătatea.
         </p>
       </div>
 
@@ -24,26 +24,28 @@ export default function AboutPage() {
         <div className="from-primary/10 via-primary/5 to-background absolute inset-0 bg-gradient-to-r"></div>
         <div className="bg-grid-white/[0.02] bg-grid-pattern absolute inset-0"></div>
         <CardContent className="relative space-y-4 p-8 text-center">
-          <h2 className="text-2xl font-semibold">Our Mission</h2>
+          <h2 className="text-2xl font-semibold">Misiunea Noastră</h2>
           <p className="text-muted-foreground mx-auto max-w-3xl text-lg">
-            At Vezumo, we believe everyone deserves the opportunity to present their best professional self. Our
-            platform combines modern design, AI-powered assistance, and user-friendly tools to make resume creation
-            accessible and effective.
+            La EcoBeauty, credem că frumusețea adevărată vine din respectul față de natură. Platforma noastră promovează
+            produse cosmetice sustenabile, naturale și prietenoase cu mediul, oferind consumatorilor opțiuni sigure și
+            responsabile.
           </p>
         </CardContent>
       </Card>
 
       {/* Values Section */}
       <div className="space-y-8">
-        <h2 className="text-center text-2xl font-semibold">Our Values</h2>
+        <h2 className="text-center text-2xl font-semibold">Valorile Noastre</h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <Card>
             <CardHeader>
               <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
                 <Heart className="text-primary h-6 w-6" />
               </div>
-              <CardTitle>User-Focused</CardTitle>
-              <CardDescription>Every feature we build starts with our users&apos; needs and feedback.</CardDescription>
+              <CardTitle>Respect pentru utilizatori</CardTitle>
+              <CardDescription>
+                Fiecare funcționalitate este creată pornind de la nevoile și feedback-ul comunității noastre.
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card>
@@ -51,9 +53,9 @@ export default function AboutPage() {
               <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
                 <Lightbulb className="text-primary h-6 w-6" />
               </div>
-              <CardTitle>Innovation</CardTitle>
+              <CardTitle>Inovație verde</CardTitle>
               <CardDescription>
-                We continuously evolve our platform with the latest technology and design trends.
+                Promovăm soluții inovatoare pentru a face frumusețea mai sustenabilă și accesibilă tuturor.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -62,9 +64,9 @@ export default function AboutPage() {
               <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
                 <Award className="text-primary h-6 w-6" />
               </div>
-              <CardTitle>Excellence</CardTitle>
+              <CardTitle>Calitate și transparență</CardTitle>
               <CardDescription>
-                We strive for the highest quality in every template and feature we deliver.
+                Selectăm cu grijă fiecare produs pentru a garanta calitate, siguranță și transparență în compoziție.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -73,17 +75,17 @@ export default function AboutPage() {
 
       {/* Features Overview */}
       <div className="space-y-8">
-        <h2 className="text-center text-2xl font-semibold">Why Choose Vezumo</h2>
+        <h2 className="text-center text-2xl font-semibold">De ce să alegi EcoBeauty</h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
               <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
                 <Target className="text-primary h-6 w-6" />
               </div>
-              <CardTitle>ATS-Optimized Templates</CardTitle>
+              <CardTitle>Selecție atentă de produse</CardTitle>
               <CardDescription>
-                Our templates are designed to pass through Applicant Tracking Systems while maintaining a beautiful,
-                professional appearance.
+                Toate produsele sunt atent verificate pentru a respecta standardele de sustenabilitate și ingrediente
+                naturale.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -92,9 +94,10 @@ export default function AboutPage() {
               <div className="bg-primary/10 mb-2 w-fit rounded-lg p-3">
                 <Users className="text-primary h-6 w-6" />
               </div>
-              <CardTitle>AI-Powered Assistance</CardTitle>
+              <CardTitle>Comunitate dedicată</CardTitle>
               <CardDescription>
-                Get intelligent suggestions for content and formatting to create a more impactful resume.
+                Alătură-te unei comunități pasionate de frumusețe responsabilă și schimbă modul în care consumăm produse
+                cosmetice.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -106,13 +109,14 @@ export default function AboutPage() {
         <div className="from-primary/10 via-primary/5 to-background absolute inset-0 bg-gradient-to-r"></div>
         <div className="bg-grid-white/[0.02] bg-grid-pattern absolute inset-0"></div>
         <CardContent className="relative space-y-6 p-8 text-center">
-          <h2 className="text-2xl font-semibold">Ready to Build Your Resume?</h2>
+          <h2 className="text-2xl font-semibold">Ești gata să descoperi frumusețea eco?</h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Join thousands of job seekers who have successfully created standout resumes with Vezumo.
+            Alătură-te miilor de utilizatori care au ales EcoBeauty pentru un stil de viață mai sănătos și mai
+            responsabil.
           </p>
           <Button asChild size="lg" className="mt-4">
             <Link href="/auth/sign-up" className="gap-2">
-              Get Started <ArrowRight className="h-4 w-4" />
+              Începe acum <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </CardContent>

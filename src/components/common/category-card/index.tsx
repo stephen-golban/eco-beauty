@@ -18,7 +18,7 @@ export function CategoryCard({ category, freeForm = false }: { category: Categor
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
         <h3 className="text-3xl font-bold">{category.name}</h3>
         <Button variant="secondary" className="mt-4">
-          Explore Collection
+          Vezi colecția
         </Button>
       </div>
     </div>

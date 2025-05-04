@@ -20,11 +20,11 @@ export function Footer() {
               <h3 className="text-lg font-semibold">Eco Beauty</h3>
             </div>
             <p className="text-muted-foreground max-w-sm text-sm">
-              Discover sustainable and eco-friendly beauty products that are good for you and the planet.
+              Descoperă produse de frumusețe sustenabile și eco-friendly, bune pentru tine și pentru planetă.
             </p>
           </div>
           <div>
-            <h4 className="mb-3 font-medium">Shop</h4>
+            <h4 className="mb-3 font-medium">Magazin</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
@@ -35,7 +35,7 @@ export function Footer() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  Products
+                  Produse
                 </Link>
               </li>
               <li>
@@ -47,13 +47,13 @@ export function Footer() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  Categories
+                  Categorii
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="mb-3 font-medium">Company</h4>
+            <h4 className="mb-3 font-medium">Companie</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
@@ -64,7 +64,7 @@ export function Footer() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  About
+                  Despre noi
                 </Link>
               </li>
               <li>
@@ -76,14 +76,14 @@ export function Footer() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  Privacy
+                  Confidențialitate
                 </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="text-muted-foreground mt-10 flex items-center justify-between border-t pt-6 text-sm">
-          <p>© {new Date().getFullYear()} Eco Beauty. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Eco Beauty. Toate drepturile rezervate.</p>
         </div>
       </div>
     </footer>

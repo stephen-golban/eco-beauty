@@ -1,6 +1,4 @@
-import { useRouter } from "next/navigation";
-
-import { LogOut, User } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 import { SignOutButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
@@ -23,11 +21,9 @@ interface UserMenuProps {
 }
 
 export function UserMenu({ user, collapsed }: UserMenuProps) {
-  const router = useRouter();
-
   const userAvatar = (
     <Avatar className="ring-border dark:ring-border h-8 w-8 cursor-pointer ring-1">
-      <AvatarImage src={user.imageUrl} alt={user.fullName || "User avatar"} className="object-cover" />
+      <AvatarImage src={user.imageUrl} alt={user.fullName || "Avatar utilizator"} className="object-cover" />
       <AvatarFallback className="bg-background text-foreground">{user.firstName?.[0] || "U"}</AvatarFallback>
     </Avatar>
   );
@@ -54,15 +50,10 @@ export function UserMenu({ user, collapsed }: UserMenuProps) {
               </div>
             </div>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => router.push("/account")} className="cursor-pointer">
-              <User className="mr-2 h-4 w-4" />
-              <span>Account</span>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <SignOutButton>
               <DropdownMenuItem variant="destructive" className="cursor-pointer">
                 <LogOut className="mr-2 h-4 w-4" />
-                Logout
+                Deconectare
               </DropdownMenuItem>
             </SignOutButton>
           </DropdownMenuContent>

@@ -3,12 +3,13 @@ import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/common/product-card";
 
 interface CategoryPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
   const category = await prisma.category.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     include: { products: true },
   });
 
@@ -22,9 +23,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <h1 className="mt-8 text-4xl font-bold tracking-tight sm:text-5xl">{category.name}</h1>
       </div>
       <div className="mt-12 space-y-8">
-        <h2 className="text-2xl font-semibold">Products in {category.name}</h2>
+        <h2 className="text-2xl font-semibold">Produse în {category.name}</h2>
         {category.products.length === 0 ? (
-          <p className="text-muted-foreground text-center">No products found in this category.</p>
+          <p className="text-muted-foreground text-center">Nu au fost găsite produse în această categorie.</p>
         ) : (
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {category.products.map((product) => (

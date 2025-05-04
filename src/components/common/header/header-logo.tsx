@@ -10,10 +10,10 @@ interface HeaderLogoProps {
 
 export function HeaderLogo({ href }: HeaderLogoProps) {
   return (
-    <div className="mr-8">
+    <div>
       <Link href={href} className="flex cursor-pointer items-center space-x-2">
         <Image src="/logo.svg" alt="Eco Beauty Logo" width={20} height={20} className={cn("dark:invert")} />
-        <span className="text-xl font-bold tracking-tight">Eco Beauty</span>
+        <span className="text-lg font-bold tracking-tight lg:text-xl">Eco Beauty</span>
       </Link>
     </div>
   );

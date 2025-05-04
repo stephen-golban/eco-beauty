@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { format } from "date-fns";
 
 export async function getDashboardData(clerkId: string) {
-  // Get user with relations
+  // Obține utilizatorul cu relații
   const user = await prisma.user.findUnique({
     where: { clerkId },
     include: {
@@ -19,34 +19,37 @@ export async function getDashboardData(clerkId: string) {
       },
     },
   });
-  if (!user) throw new Error("User not found");
+  if (!user) throw new Error("Utilizatorul nu a fost găsit");
 
-  // Loyalty points
+  // Puncte de loialitate
   const loyaltyPoints = user.loyaltyPoints;
 
-  // Orders count
+  // Număr comenzi
   const ordersCount = user.orders.length;
 
-  // Wishlist count
+  // Număr favorite
   const wishlistCount = user.wishlist.length;
 
-  // Orders per month (for the current year)
+  // Comenzi pe lună (pentru anul curent) - luni în română
   const now = new Date();
-  const months = Array.from({ length: 12 }, (_, i) => format(new Date(now.getFullYear(), i, 1), "MMM"));
+  const months = Array.from({ length: 12 }, (_, i) => {
+    const name = new Intl.DateTimeFormat("ro-RO", { month: "short" }).format(new Date(now.getFullYear(), i, 1));
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  });
   const orderData = Array(12).fill(0);
   user.orders.forEach((order) => {
     const idx = new Date(order.placedAt).getMonth();
     orderData[idx]++;
   });
 
-  // Recent orders (last 4)
+  // Comenzi recente (ultimele 4)
   const recentOrders = user.orders.slice(0, 4).map((order) => {
     const firstItem = order.items[0];
     return {
       id: order.id,
-      product: firstItem?.product?.name || "Unknown Product",
+      product: firstItem?.product?.name || "Produs necunoscut",
       image: firstItem?.product?.images?.[0] || "/images/products/placeholder.jpg",
-      price: firstItem?.price || 0,
+      price: Number(order.total),
       date: format(order.placedAt, "yyyy-MM-dd"),
     };
   });

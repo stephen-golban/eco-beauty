@@ -52,22 +52,22 @@ export default function SignUpPage() {
 
   return (
     <AuthLayout
-      title="Create Your Account"
-      description="Join Eco Beauty to start shopping for sustainable and eco-friendly beauty products."
+      title="Creează-ți contul"
+      description="Alătură-te EcoBeauty pentru a începe cumpărăturile de produse de frumusețe sustenabile și eco-friendly."
     >
-      <AuthCard alternateAction={{ href: "/auth/sign-in", linkText: "Sign In", prompt: "Already have an account?" }}>
+      <AuthCard alternateAction={{ href: "/auth/sign-in", linkText: "Autentificare", prompt: "Ai deja un cont?" }}>
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-6">
             <div className="space-y-6">
               <NameInput name="full_name" />
               <EmailInput />
               <div className="space-y-4">
-                <PasswordInput name="password" placeholder="Create a password" autoComplete="new-password" />
-                <PasswordInput name="confirmPassword" placeholder="Confirm your password" autoComplete="new-password" />
+                <PasswordInput name="password" placeholder="Creează o parolă" autoComplete="new-password" />
+                <PasswordInput name="confirmPassword" placeholder="Confirmă parola" autoComplete="new-password" />
               </div>
             </div>
             <div id="clerk-captcha" />
-            <FormSubmitButton disabled={!form.formState.isValid}>Create Account</FormSubmitButton>
+            <FormSubmitButton disabled={!form.formState.isValid}>Creează cont</FormSubmitButton>
           </form>
         </Form>
       </AuthCard>

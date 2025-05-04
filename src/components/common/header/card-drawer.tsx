@@ -57,7 +57,7 @@ export function CardDrawer() {
         clearCart();
         router.push("/app");
       } catch {
-        setError("Order failed. Please try again.");
+        setError("Comanda a eșuat. Vă rugăm să încercați din nou.");
       }
     });
   };
@@ -69,11 +69,11 @@ export function CardDrawer() {
       </DrawerTrigger>
       <DrawerContent className="flex h-full w-full max-w-sm flex-col p-0">
         <DrawerHeader>
-          <DrawerTitle>Your Cart</DrawerTitle>
+          <DrawerTitle>Coșul tău</DrawerTitle>
         </DrawerHeader>
         <div className="flex-1 overflow-y-auto px-4 pb-4">
           {items.length === 0 ? (
-            <div className="text-muted-foreground py-12 text-center">Your cart is empty.</div>
+            <div className="text-muted-foreground py-12 text-center">Coșul este gol.</div>
           ) : (
             <ul className="space-y-4">
               {items.map(({ product, quantity }) => (
@@ -110,7 +110,7 @@ export function CardDrawer() {
                         <Plus className="h-4 w-4" />
                       </Button>
                     </div>
-                    <div className="text-sm">MDL {Number(product.price) * quantity}</div>
+                    <div className="text-sm">{(Number(product.price) * quantity).toFixed(2)} MDL</div>
                   </div>
                 </li>
               ))}
@@ -120,22 +120,22 @@ export function CardDrawer() {
         <DrawerFooter>
           <div className="flex items-center justify-between text-lg font-semibold">
             <span>Total</span>
-            <span>MDL {total}</span>
+            <span>{total.toFixed(2)} MDL</span>
           </div>
           <Button
             disabled={items.length === 0 || !isSignedIn || isPending}
             className="w-full"
             onClick={handlePlaceOrder}
           >
-            {isPending ? "Placing Order..." : "Place Order"}
+            {isPending ? "Se plasează comanda..." : "Plasează comanda"}
           </Button>
           {error && <div className="mt-2 text-center text-red-500">{error}</div>}
           <Button variant="outline" onClick={clearCart} disabled={items.length === 0} className="w-full">
-            Clear Cart
+            Golește coșul
           </Button>
           <DrawerClose asChild>
             <Button variant="ghost" className="w-full" ref={drawerCloseRef}>
-              Close
+              Închide
             </Button>
           </DrawerClose>
         </DrawerFooter>

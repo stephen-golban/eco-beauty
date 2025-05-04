@@ -51,26 +51,29 @@ export default function SignInPage() {
   });
 
   return (
-    <AuthLayout title="Welcome back to Eco Beauty" description="Sign in to access your account and continue shopping.">
-      <AuthCard alternateAction={{ href: "/auth/sign-up", linkText: "Sign Up", prompt: "Don't have an account?" }}>
+    <AuthLayout
+      title="Bine ai revenit la EcoBeauty"
+      description="Autentifică-te pentru a accesa contul și a continua cumpărăturile."
+    >
+      <AuthCard alternateAction={{ href: "/auth/sign-up", linkText: "Creează cont", prompt: "Nu ai încă un cont?" }}>
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-6">
             <div className="space-y-6">
               <EmailInput />
 
               <div className="space-y-2">
-                <PasswordInput name="password" placeholder="Enter your password" autoComplete="current-password" />
+                <PasswordInput name="password" placeholder="Introdu parola" autoComplete="current-password" />
                 <div className="flex justify-end">
                   <Link
                     href="/auth/forgot-password"
                     className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot password?
+                    Ai uitat parola?
                   </Link>
                 </div>
               </div>
             </div>
-            <FormSubmitButton disabled={!form.formState.isValid}>Sign In</FormSubmitButton>
+            <FormSubmitButton disabled={!form.formState.isValid}>Autentificare</FormSubmitButton>
           </form>
         </Form>
       </AuthCard>

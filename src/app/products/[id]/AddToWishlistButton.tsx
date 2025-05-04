@@ -8,9 +8,10 @@ import { HeartMinus, HeartPlus, Loader2 } from "lucide-react";
 interface Props {
   productId: string;
   inWishlist: boolean;
+  iconMode?: boolean;
 }
 
-export default function AddToWishlistButton({ productId, inWishlist }: Props) {
+export default function AddToWishlistButton({ productId, inWishlist, iconMode }: Props) {
   const [isPending, startTransition] = useTransition();
 
   if (inWishlist) {
@@ -22,13 +23,18 @@ export default function AddToWishlistButton({ productId, inWishlist }: Props) {
       >
         <Button
           type="submit"
-          variant="secondary"
-          aria-label="Remove from wishlist"
+          variant={iconMode ? "destructive" : "secondary"}
+          size={iconMode ? "icon" : undefined}
+          aria-label="Elimină din favorite"
           disabled={isPending}
-          className="flex items-center gap-2"
+          className={iconMode ? undefined : "flex items-center gap-2"}
         >
-          {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <HeartMinus className="mr-2 h-4 w-4" />}
-          Remove from Wishlist
+          {isPending ? (
+            <Loader2 className={iconMode ? "h-5 w-5 animate-spin" : "mr-2 h-4 w-4 animate-spin"} />
+          ) : (
+            <HeartMinus className={iconMode ? "h-5 w-5" : "mr-2 h-4 w-4"} />
+          )}
+          {!iconMode && "Elimină din favorite"}
         </Button>
       </form>
     );
@@ -42,13 +48,18 @@ export default function AddToWishlistButton({ productId, inWishlist }: Props) {
     >
       <Button
         type="submit"
-        variant="outline"
-        aria-label="Add to wishlist"
+        variant={iconMode ? "secondary" : "outline"}
+        size={iconMode ? "icon" : undefined}
+        aria-label="Adaugă la favorite"
         disabled={isPending}
-        className="flex items-center gap-2"
+        className={iconMode ? undefined : "flex items-center gap-2"}
       >
-        {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <HeartPlus className="mr-2 h-4 w-4" />}
-        Add to Wishlist
+        {isPending ? (
+          <Loader2 className={iconMode ? "h-5 w-5 animate-spin" : "mr-2 h-4 w-4 animate-spin"} />
+        ) : (
+          <HeartPlus className={iconMode ? "h-5 w-5" : "mr-2 h-4 w-4"} />
+        )}
+        {!iconMode && "Adaugă la favorite"}
       </Button>
     </form>
   );

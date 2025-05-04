@@ -7,8 +7,8 @@ import { Product } from "@/generated/prisma";
 import AddToWishlistButton from "./AddToWishlistButton";
 import { auth } from "@clerk/nextjs/server";
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const { id } = params;
   const product = await prisma.product.findUnique({
     where: { id },
   });
@@ -46,20 +46,20 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         {/* Details */}
         <div className="flex-1 space-y-6">
           <h1 className="text-3xl font-bold">{product.name}</h1>
-          <p className="text-muted-foreground text-lg">MDL {price}</p>
+          <p className="text-muted-foreground text-lg">{Number(price).toFixed(2)} MDL</p>
           {product.stock === 0 ? (
-            <span className="font-semibold text-red-500">Sold out</span>
+            <span className="font-semibold text-red-500">Stoc epuizat</span>
           ) : (
-            <span className="font-semibold text-green-600">In stock: {product.stock}</span>
+            <span className="font-semibold text-green-600">În stoc: {product.stock}</span>
           )}
           {product.isDeal && product.dealLabel && <Badge className="ml-4">{product.dealLabel}</Badge>}
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold">Description</h2>
+            <h2 className="text-xl font-semibold">Descriere</h2>
             <p>{product.description}</p>
           </div>
           {product.ingredients && product.ingredients.length > 0 && (
             <div className="space-y-2">
-              <h2 className="text-xl font-semibold">Ingredients</h2>
+              <h2 className="text-xl font-semibold">Ingrediente</h2>
               <ul className="list-inside list-disc text-sm text-gray-700 dark:text-gray-200">
                 {product.ingredients.map((ing, i) => (
                   <li key={i}>{ing}</li>
@@ -69,7 +69,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           )}
           {product.benefits && product.benefits.length > 0 && (
             <div className="space-y-2">
-              <h2 className="text-xl font-semibold">Benefits</h2>
+              <h2 className="text-xl font-semibold">Beneficii</h2>
               <ul className="list-inside list-disc text-sm text-gray-700 dark:text-gray-200">
                 {product.benefits.map((b, i) => (
                   <li key={i}>{b}</li>
@@ -79,7 +79,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           )}
           {product.howToUse && (
             <div className="space-y-2">
-              <h2 className="text-xl font-semibold">How to Use</h2>
+              <h2 className="text-xl font-semibold">Mod de utilizare</h2>
               <p>{product.howToUse}</p>
             </div>
           )}
@@ -96,7 +96,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             )}
             {product.isCrueltyFree && (
               <span className="rounded bg-green-100 px-2 py-1 text-xs text-green-800 dark:bg-green-900 dark:text-green-200">
-                Cruelty-Free
+                Fără cruzime
               </span>
             )}
             {product.gender && (
@@ -108,7 +108,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {rating && <div className="mt-2 text-sm text-yellow-600 dark:text-yellow-300">Rating: {rating} / 5</div>}
 
           {/* Add to Cart UI */}
-          <AddToWishlistButton productId={product.id} inWishlist={inWishlist} />
+          {userId && <AddToWishlistButton productId={product.id} inWishlist={inWishlist} />}
           <AddToCartForm product={safeProduct as unknown as Product} />
         </div>
       </div>

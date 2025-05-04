@@ -10,9 +10,9 @@ export default async function CategoriesPage() {
   return (
     <div className="mx-auto min-w-screen space-y-12 px-4">
       <div className="space-y-4 text-center">
-        <h1 className="mt-8 text-4xl font-bold tracking-tight sm:text-5xl">Shop by Category</h1>
+        <h1 className="mt-8 text-4xl font-bold tracking-tight sm:text-5xl">Cumpără după categorie</h1>
         <p className="text-muted-foreground mx-auto max-w-3xl text-xl">
-          Discover our curated selection of beauty, skincare, and lifestyle categories.
+          Descoperă selecția noastră de categorii de frumusețe, îngrijire și lifestyle.
         </p>
       </div>
       <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
