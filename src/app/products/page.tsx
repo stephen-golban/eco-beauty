@@ -1,4 +1,5 @@
 "use client";
+import { FullScreenLoader } from "@/components/common";
 import ProductsClient from "./ProductsClient";
 import { Category, Product } from "@/generated/prisma";
 import useSWR from "swr";
@@ -11,7 +12,7 @@ export default function ProductsPageWrapper() {
   const { data: wishlistIds, isLoading: loadingWishlist } = useSWR<string[]>("/api/wishlist", fetcher);
   const loading = loadingProducts || loadingCategories || loadingWishlist;
   if (loading || !products || !categories || !wishlistIds) {
-    return <div className="p-8 text-center">Loading...</div>;
+    return <FullScreenLoader />;
   }
   // Data fetching must be moved to a client-friendly method (e.g., SWR, React Query, or API route)
   // For now, just render ProductsClient with the search param
